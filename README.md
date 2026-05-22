@@ -1,19 +1,42 @@
 # Digital Design using Verilog
 
-This repository contains implementations of fundamental digital design components using Verilog HDL.
-It focuses on building a strong foundation in both **combinational** and **sequential** logic using a structured, modular, and integration-oriented approach.
+This repository contains implementations of fundamental and intermediate digital design components using Verilog HDL.
+The project is structured as a gradual journey from basic combinational circuits to sequential systems, FSM-based control logic, and datapath-level hardware accelerators.
 
-The repository gradually moves from individual hardware blocks toward complete datapath-level system design.
+The focus is on:
+
+* Modular RTL design
+* Hardware-oriented thinking
+* Clean Verilog coding practices
+* Simulation and verification
+* Scalable digital system architecture
+
+From tiny logic blocks to coordinated datapaths ticking in clock-synchronized harmony ⚙️
 
 ---
 
 # 📂 Repository Structure
 
-## 🔹 ALU (4-bit)
+```text id="3l3y3u"
+Digital_Design_Verilog/
+│
+├── 01_ALU_4bit/
+├── 02_Registers/
+├── 03_Datapath_Integration/
+├── 04_Finite_State_Machines/
+│   ├── Moore_FSM/
+│   └── Mealy_FSM/
+│
+└── 05_GCD_Accelerator_Project/
+```
 
-Implementation of a 4-bit Arithmetic Logic Unit with multiple operations.
+---
 
-### Supported Operations
+# 🔹 01. ALU_4bit
+
+Implementation of a 4-bit Arithmetic Logic Unit supporting arithmetic and logical operations.
+
+## Supported Operations
 
 ### Arithmetic
 
@@ -29,55 +52,56 @@ Implementation of a 4-bit Arithmetic Logic Unit with multiple operations.
 * XOR
 * NOR
 
-### Features
+## Features
 
 * Modular architecture
-* Separate arithmetic and logic handling
-* Flag generation:
+* Arithmetic and logic separation
+* Status flag generation:
 
   * Carry
   * Zero
   * Sign
   * Overflow
-* Dedicated testbench for verification
+* Dedicated testbench verification
 
 ---
 
-## 🔹 Registers
+# 🔹 02. Registers
 
-Collection of commonly used shift registers.
+Collection of commonly used shift-register architectures.
 
-### Included Modules
+## Included Modules
 
-* **PISO (Parallel-In Serial-Out)**
-* **SIPO (Serial-In Parallel-Out)**
-* **SISO (Serial-In Serial-Out)**
-* **Universal Shift Register**
+* PISO (Parallel-In Serial-Out)
+* SIPO (Serial-In Parallel-Out)
+* SISO (Serial-In Serial-Out)
+* Universal Shift Register
 
   * Shift Left
   * Shift Right
   * Parallel Load
   * Hold
 
-Each module includes:
+## Features
 
-* Verilog source code
-* Individual testbench
-* Simulation-ready implementation
+* Individual Verilog implementations
+* Separate simulation testbenches
+* Clock-driven sequential behavior
+* RTL-focused modular design
 
 ---
 
-## 🔹 ALU + Register Datapath Integration
+# 🔹 03. Datapath Integration
 
-A simple integrated datapath architecture demonstrating how registers and ALUs interact in a digital system.
+A simple datapath integration project demonstrating interaction between registers and ALUs.
 
-### Datapath Structure
+## Datapath Structure
 
-```text id="12mz9f"
+```text id="f7bg6g"
 Register → ALU → Register
 ```
 
-### Supported ALU Operations
+## Supported Operations
 
 * Addition
 * Subtraction
@@ -88,23 +112,90 @@ Register → ALU → Register
 * OR
 * AND
 
-### Concepts Demonstrated
+## Concepts Demonstrated
 
-* Register-transfer level (RTL) datapath design
-* ALU control signal selection
-* Synchronous register operation
-* Modular subsystem integration
-* Data movement between processing stages
+* Register-transfer level (RTL) design
+* ALU control signal handling
+* Synchronous data movement
+* Subsystem integration
+* Datapath-oriented architecture
 
-Tiny silicon assembly line running at clock-edge tempo ⚡
+---
+
+# 🔹 04. Finite State Machines (FSM)
+
+Implementation of both Moore and Mealy finite state machines.
+
+## Included Designs
+
+### Moore FSM
+
+* Output depends only on current state
+* Multi-state transition verification
+* Active-low reset handling
+
+### Mealy FSM
+
+* Output depends on current state and input
+* Dynamic output behavior
+* Faster output response characteristics
+
+## Concepts Covered
+
+* State encoding
+* Next-state logic
+* Output logic design
+* Sequential control systems
+* FSM simulation methodology
+
+Small digital decision-makers quietly hopping between states like silicon traffic lights 🚦
+
+---
+
+# 🔹 05. GCD Accelerator
+
+A datapath + controller-based hardware accelerator for computing the Greatest Common Divisor (GCD) using the subtraction-based Euclidean Algorithm.
+
+## Architecture Includes
+
+* Register File
+* FSM Controller
+* Comparator Logic
+* Arithmetic Datapath
+* Control Signal Routing
+
+## Features
+
+* 16-bit computation support
+* Start/Done handshake mechanism
+* Modular datapath-control separation
+* Hardware iterative computation
+
+## FSM-Controlled Operation
+
+```text id="9kp97d"
+LOAD → COMPARE → SUBTRACT → REPEAT → DONE
+```
+
+## Concepts Demonstrated
+
+* Controller/datapath co-design
+* Register file usage
+* Hardware algorithm implementation
+* Sequential computation architecture
+* RTL integration techniques
+
+A tiny arithmetic engine repeatedly subtracting numbers until mathematics finally nods in agreement 🧮
 
 ---
 
 # ⚙️ Tools & Technologies
 
 * Verilog HDL
-* Vivado Simulator
+* Vivado
 * Icarus Verilog
+* ModelSim
+* EDA Playground
 
 ---
 
@@ -116,20 +207,25 @@ Tiny silicon assembly line running at clock-edge tempo ⚡
 * Multiplexers
 * Arithmetic Circuits
 * Comparators
+* ALU Design
 
 ## Sequential Logic
 
 * Shift Registers
-* PIPO Registers
 * Clocked Circuits
+* FSM Design
+* State Transitions
+* Register Files
 
 ## RTL & System Design
 
-* ALU Design
 * Datapath Integration
 * Control Signal Handling
-* Modular Hardware Architecture
-* Testbench Development and Simulation
+* Controller + Datapath Architecture
+* Hardware Accelerators
+* Modular RTL Design
+* Testbench Development
+* Simulation & Verification
 
 ---
 
@@ -139,39 +235,46 @@ The goal of this repository is to:
 
 * Build strong digital design fundamentals
 * Practice modular RTL development
-* Understand datapath-level integration
-* Improve Verilog coding and simulation skills
-* Prepare for advanced hardware design topics
+* Understand sequential hardware systems
+* Learn datapath-level integration
+* Improve Verilog simulation and debugging skills
+* Develop scalable hardware design practices
 
-Including:
+This repository is designed as both:
 
-* Register Files
-* FSM-based Control Units
-* Processor Datapaths
-* Pipelining
-* Basic CPU Architecture
+* A structured learning archive
+* A growing RTL design portfolio
 
 ---
 
 # 🚀 Future Enhancements
 
-Planned additions:
+Planned additions include:
 
-* Register File with read/write support
-* FSM-controlled datapath
-* Accumulator architecture
-* Status flag registers
-* Memory integration
-* Pipelined datapath stages
-* Simple processor implementation
+* FIFO Buffers
+* UART Communication
+* Memory Modules
+* Pipelined Datapaths
+* Hazard Detection Logic
+* Simple Processor Datapath
+* Instruction Decoder
+* Cache Basics
+* Mini RISC CPU Architecture
+
+The long-term roadmap slowly drifts from isolated circuits toward a complete tiny processor universe 🌌
 
 ---
 
 # 📌 Notes
 
-* All designs are written in a modular and readable format
-* Each component is verified using dedicated testbenches
-* Repository structure is organized for scalability and learning
+* All modules are written in synthesizable Verilog HDL
+* Every design includes dedicated simulation testbenches
+* Repository structure is organized for scalability
 * Focused on practical RTL implementation and hardware understanding
-* Suitable for academic practice, interview preparation, and portfolio projects
+* Suitable for:
 
+  * Academic learning
+  * Interview preparation
+  * FPGA practice
+  * RTL portfolio development
+  * Digital design revision and experimentation
