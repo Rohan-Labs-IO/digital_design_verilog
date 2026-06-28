@@ -1,16 +1,22 @@
 # Digital Design using Verilog
 
-This repository contains implementations of fundamental and intermediate digital design components using Verilog HDL. The projects are organized as a progressive journey from combinational logic and sequential circuits to finite state machines, datapath integration, and hardware accelerators.
+A collection of synthesizable **Verilog and SystemVerilog** projects developed while learning digital design and RTL development. This repository progresses from fundamental combinational circuits to sequential systems, finite state machines, datapath integration, clock domain crossing techniques, and hardware communication building blocks.
 
-The focus is on:
+The goal is to build a strong foundation in digital hardware design through modular implementations, simulation-driven verification, and scalable RTL design practices.
 
-* Modular RTL design
-* Hardware-oriented thinking
-* Clean Verilog coding practices
-* Simulation and verification
-* Scalable digital system architecture
+---
 
-From tiny logic blocks to coordinated datapaths and clock-driven controllers ticking in silicon rhythm ⚙️
+# ✨ Key Focus Areas
+
+- Modular RTL Design
+- Combinational & Sequential Logic
+- Finite State Machines (FSM)
+- Datapath Integration
+- Hardware Accelerators
+- Clock Domain Crossing (CDC)
+- FIFO Design
+- Simulation & Verification
+- Hardware-Oriented Design Thinking
 
 ---
 
@@ -26,238 +32,244 @@ Digital_Design_Verilog/
 │   ├── Moore_FSM/
 │   └── Mealy_FSM/
 ├── 05_GCD_Accelerator_Project/
-└── 06_Traffic_Light_Controller/
+├── 06_Traffic_Light_Controller/
+├── 07_Clock_Domain_Crossing/
+│   ├── Gray_Code/
+│   │   ├── Binary_to_Gray/
+│   │   └── Gray_to_Binary/
+│   ├── Synchronizers/
+│   │   ├── Two_FF_Synchronizer/
+│   │   └── Pulse_Synchronizer/
+│   └── FIFOs/
+│       ├── Sync_FIFO/
+│       └── Async_FIFO/
+└── README.md
 ```
 
 ---
 
-# 🔹 01. ALU_4bit
+# 📚 Projects
 
-Implementation of a 4-bit Arithmetic Logic Unit supporting arithmetic and logical operations.
+## 01. 4-bit ALU
 
-## Supported Operations
+A modular Arithmetic Logic Unit implementing common arithmetic and logical operations.
 
-### Arithmetic
+### Supported Operations
 
-* ADD
-* SUB
-* Multiplication
-* Comparison
+**Arithmetic**
 
-### Logical
+- Addition
+- Subtraction
+- Multiplication
+- Comparison
 
-* AND
-* OR
-* XOR
-* NOR
+**Logical**
 
-## Features
+- AND
+- OR
+- XOR
+- NOR
 
-* Modular architecture
-* Arithmetic and logic separation
-* Status flag generation:
+### Features
 
-  * Carry
-  * Zero
-  * Sign
-  * Overflow
-* Dedicated testbench verification
+- Modular architecture
+- Arithmetic and logic separation
+- Carry, Zero, Sign and Overflow flag generation
+- Dedicated simulation testbench
 
 ---
 
-# 🔹 02. Registers
+## 02. Registers
 
-Collection of commonly used shift-register architectures.
+Collection of commonly used register architectures used in sequential digital systems.
 
-## Included Modules
+### Included Designs
 
-* PISO (Parallel-In Serial-Out)
-* SIPO (Serial-In Parallel-Out)
-* SISO (Serial-In Serial-Out)
-* Universal Shift Register
+- SISO Register
+- SIPO Register
+- PISO Register
+- Universal Shift Register
 
-  * Shift Left
-  * Shift Right
-  * Parallel Load
-  * Hold
+### Universal Register Modes
 
-## Features
+- Shift Left
+- Shift Right
+- Parallel Load
+- Hold
 
-* Individual Verilog implementations
-* Separate simulation testbenches
-* Clock-driven sequential behavior
-* RTL-focused modular design
+### Highlights
+
+- Modular Verilog implementations
+- Separate simulation testbenches
+- Clock-driven sequential behavior
+- Register Transfer Level (RTL) design
 
 ---
 
-# 🔹 03. Datapath Integration
+## 03. Datapath Integration
 
-A simple datapath integration project demonstrating interaction between registers and ALUs.
+A simple RTL datapath demonstrating interaction between registers and an ALU.
 
-## Datapath Structure
+### Datapath
 
 ```text
 Register → ALU → Register
 ```
 
-## Supported Operations
+### Supported Operations
 
-* Addition
-* Subtraction
-* Multiplication
-* Comparison
-* XOR
-* NAND
-* OR
-* AND
+- Addition
+- Subtraction
+- Multiplication
+- Comparison
+- XOR
+- NAND
+- OR
+- AND
 
-## Concepts Demonstrated
+### Highlights
 
-* Register Transfer Level (RTL) design
-* ALU control signal handling
-* Synchronous data movement
-* Subsystem integration
-* Datapath-oriented architecture
+- Register Transfer Level (RTL) design
+- ALU control signal handling
+- Synchronous data movement
+- Modular subsystem integration
 
 ---
 
-# 🔹 04. Finite State Machines (FSM)
+## 04. Finite State Machines
 
 Implementation of both Moore and Mealy finite state machines.
 
-## Included Designs
-
 ### Moore FSM
 
-* Output depends only on current state
-* Multi-state transition verification
-* Active-low reset handling
+- Output depends only on the current state
+- Multi-state transition verification
+- Active-low reset
 
 ### Mealy FSM
 
-* Output depends on current state and input
-* Dynamic output behavior
-* Faster output response characteristics
+- Output depends on both state and input
+- Faster output response
+- Dynamic output behavior
 
-## Concepts Covered
+### Concepts Covered
 
-* State encoding
-* Next-state logic
-* Output logic design
-* Sequential control systems
-* FSM simulation methodology
-
-Small digital decision-makers quietly hopping between states like silicon traffic lights 🚦
+- State encoding
+- Next-state logic
+- Output logic
+- FSM verification
+- Sequential controllers
 
 ---
 
-# 🔹 05. GCD Accelerator
+## 05. GCD Accelerator
 
-A datapath + controller-based hardware accelerator for computing the Greatest Common Divisor (GCD) using the subtraction-based Euclidean Algorithm.
+Hardware implementation of the subtraction-based Euclidean Algorithm using a controller and datapath architecture.
 
-## Architecture Includes
+### Architecture
 
-* Register File
-* FSM Controller
-* Comparator Logic
-* Arithmetic Datapath
-* Control Signal Routing
+- Register File
+- FSM Controller
+- Comparator
+- Arithmetic Datapath
+- Control Signal Routing
 
-## Features
-
-* 16-bit computation support
-* Start/Done handshake mechanism
-* Modular datapath-control separation
-* Hardware iterative computation
-
-## FSM-Controlled Operation
+### FSM Operation
 
 ```text
-LOAD → COMPARE → SUBTRACT → REPEAT → DONE
+LOAD
+  ↓
+COMPARE
+  ↓
+SUBTRACT
+  ↓
+REPEAT
+  ↓
+DONE
 ```
 
-## Concepts Demonstrated
+### Features
 
-* Controller/datapath co-design
-* Register file usage
-* Hardware algorithm implementation
-* Sequential computation architecture
-* RTL integration techniques
-
-A tiny arithmetic engine repeatedly subtracting numbers until mathematics finally nods in agreement 🧮
+- 16-bit computation
+- Start/Done handshake
+- Modular controller/datapath separation
+- Iterative hardware implementation
 
 ---
 
-# 🔹 06. Traffic Light Controller
+## 06. Traffic Light Controller
 
-A finite state machine based traffic signal controller implementing coordinated traffic movement with configurable timing intervals and safe all-red transitions.
+A multi-state traffic controller coordinating multiple traffic phases using configurable timing intervals and safe all-red transitions.
 
-## Controlled Traffic Phases
+### Features
 
-* Main road traffic (North & South)
-* Dedicated turning lanes
-* East-West traffic flow
-* Intermediate all-red safety state
-
-## Features
-
-* Multi-state FSM implementation
-* Parameterized green, yellow, and red intervals
-* 1-second clock divider
-* Active-low reset
-* Modular timer and state-transition logic
-* Human-readable simulation monitoring
-
-## State Flow
-
-```text
-ALL_RED
-   ↓
-NS + NE/SW  → GREEN → YELLOW
-   ↓
-ALL_RED
-   ↓
-N + NW      → GREEN → YELLOW
-   ↓
-ALL_RED
-   ↓
-S + SE      → GREEN → YELLOW
-   ↓
-ALL_RED
-   ↓
-EW + ES/WN  → GREEN → YELLOW
-   ↓
-ALL_RED
-   ↓
-E + EN      → GREEN → YELLOW
-   ↓
-ALL_RED
-   ↓
-W + WS      → GREEN → YELLOW
-   ↓
-Repeat
-```
-
-## Concepts Demonstrated
-
-* Moore-style FSM design
-* Timer and counter integration
-* Clock division
-* Sequential control logic
-* State sequencing
-* RTL verification and simulation
-
-A tiny digital traffic officer patiently orchestrating twelve lanes, one clock edge at a time 🚥
+- Moore FSM implementation
+- Parameterized Green, Yellow and Red timings
+- One-second clock divider
+- Active-low reset
+- Modular timer and state-transition logic
+- Simulation monitoring
 
 ---
 
-# ⚙️ Tools & Technologies
+## 07. Clock Domain Crossing (CDC)
 
-* Verilog HDL
-* Vivado
-* ModelSim / QuestaSim
-* Icarus Verilog
-* EDA Playground
+A collection of fundamental Clock Domain Crossing (CDC) building blocks commonly used in modern digital systems.
+
+### Gray Code
+
+#### Binary to Gray Converter
+
+- Parameterized implementation
+- Synthesizable combinational logic
+
+#### Gray to Binary Converter
+
+- Parameterized implementation
+- Recursive XOR conversion logic
+
+### Synchronizers
+
+#### Two Flip-Flop Synchronizer
+
+Safely transfers single-bit control signals between asynchronous clock domains while minimizing metastability.
+
+#### Pulse Synchronizer
+
+Transfers single-cycle pulses across clock domains by converting them into synchronized events.
+
+### FIFOs
+
+#### Synchronous FIFO
+
+- Parameterized width and depth
+- Circular buffer implementation
+- Full and Empty flag generation
+- Single-clock operation
+
+#### Asynchronous FIFO *(Work in Progress)*
+
+Current implementation includes:
+
+- Dual-clock architecture
+- Gray-coded read/write pointers
+- Pointer synchronizers
+- Dual-port memory
+- Independent read/write clock domains
+
+**Current Status**
+
+The design is under active development. Remaining work focuses on validating Full/Empty flag generation, debugging corner cases, and completing asynchronous verification.
+
+---
+
+# 🛠 Tools
+
+- Verilog HDL
+- Vivado
+- ModelSim / QuestaSim
+- Icarus Verilog
+- EDA Playground
 
 ---
 
@@ -265,81 +277,88 @@ A tiny digital traffic officer patiently orchestrating twelve lanes, one clock e
 
 ## Combinational Logic
 
-* Logic Gates
-* Multiplexers
-* Arithmetic Circuits
-* Comparators
-* ALU Design
+- Logic Gates
+- Multiplexers
+- Comparators
+- Arithmetic Circuits
+- ALU Design
 
 ## Sequential Logic
 
-* Shift Registers
-* Clocked Circuits
-* Finite State Machines
-* State Transitions
-* Register Files
-* Counters and Timers
+- Registers
+- Shift Registers
+- Counters
+- Timers
+- Finite State Machines
+- Register Files
 
 ## RTL & System Design
 
-* Datapath Integration
-* Control Signal Handling
-* Controller + Datapath Architecture
-* Hardware Accelerators
-* Traffic Control Systems
-* Modular RTL Design
-* Testbench Development
-* Simulation & Verification
+- Register Transfer Level (RTL)
+- Datapath Integration
+- Controller + Datapath Architecture
+- Hardware Accelerators
+- Clock Domain Crossing
+- Gray Code
+- Synchronizers
+- FIFO Design
+
+## Verification
+
+- Functional Simulation
+- Testbench Development
+- Waveform Analysis
+- RTL Debugging
 
 ---
 
-# 🎯 Objective
+# 🎯 Objectives
 
-The goal of this repository is to:
+This repository is maintained to:
 
-* Build strong digital design fundamentals
-* Practice modular RTL development
-* Understand sequential hardware systems
-* Learn datapath-level integration
-* Improve Verilog simulation and debugging skills
-* Develop scalable hardware design practices
-
-This repository serves as both:
-
-* A structured learning archive
-* A growing RTL design portfolio
+- Strengthen digital design fundamentals
+- Practice modular RTL development
+- Understand sequential hardware systems
+- Learn scalable hardware architecture
+- Improve simulation and debugging skills
+- Build reusable RTL components
+- Develop a structured RTL design portfolio
 
 ---
 
-# 🚀 Future Enhancements
+# 🚀 Roadmap
 
 Planned additions include:
 
-* FIFO Buffers
-* UART Communication
-* Memory Modules
-* SPI Controller
-* Hazard Detection Logic
-* Simple Processor Datapath
-* Instruction Decoder
-* Cache Basics
-* Mini RISC CPU Architecture
+- UART
+- SPI Controller
+- Memory Modules
+- Register File Enhancements
+- Bus Interfaces
+- Hazard Detection Logic
+- Instruction Decoder
+- Cache Basics
+- Simple Processor Datapath
+- Mini RISC CPU
 
-The roadmap gradually evolves from individual RTL blocks into a small but complete digital system, where every module becomes another gear in a larger silicon machine 🌌
+The long-term objective is to evolve from individual RTL components into a cohesive processor-oriented digital system, with each project building upon the previous one.
 
 ---
 
 # 📌 Notes
 
-* All modules are written in synthesizable Verilog HDL.
-* Every design includes dedicated simulation testbenches.
-* Repository structure is organized for scalability and incremental learning.
-* Focused on practical RTL implementation and hardware understanding.
+- All RTL is written in synthesizable Verilog HDL.
+- Every completed project includes dedicated simulation testbenches.
+- Designs emphasize readability, modularity, and incremental learning.
+- Projects are developed with scalability and hardware implementation in mind.
 
-Suitable for:
+---
 
-* Academic learning
-* Interview preparation
-* FPGA practice
-* RTL portfolio development
-* Digital design revision and experimentation
+## 🎓 Suitable For
+
+- Digital Design Learning
+- FPGA Practice
+- RTL Development
+- Interview Preparation
+- Hardware Architecture Revision
+- Verilog HDL Portfolio
